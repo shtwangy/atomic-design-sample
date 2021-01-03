@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './styles.css'
 
-const Balloon = () => {
+const Balloon = ({children}) => {
     return (
-        <span className={styles.balloon}>削除する</span>
+        <span className={styles.balloon}>{children}</span>
     )
 }
 
