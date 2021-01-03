@@ -10,3 +10,8 @@ v8.5.0
 $ yarn
 ```
 
+# storybook
+```
+yarn storybook
+```
+
