@@ -1,38 +1,22 @@
 import React from "react"
 import styles from './styles.css'
 
-export const Heading1 = ({children, className, ...props}) => {
+const Heading = (
+    {
+        children,
+        level = 2,
+        visualLevel,
+        className,
+        ...props
+    }) => {
+    level = Math.max(0, Math.min(6, level)) // 0~6に丸め込む
+    visualLevel = (typeof visualLevel !== 'undefined') ? visualLevel : level
+    const Tag = `h${level}`
+    const tagStyle = `${styles.h} ${styles[`h${visualLevel}`]}`
+
     return (
-        <h1 className={[styles.h1, className].join(' ')} {...props}>{children}</h1>
+        <Tag className={[tagStyle, className].join(' ')} {...props}>{children}</Tag>
     )
 }
 
-export const Heading2 = ({children, className, ...props}) => {
-    return (
-        <h1 className={[styles.h1, className].join(' ')} {...props}>{children}</h1>
-    )
-}
-
-export const Heading3 = ({children, className, ...props}) => {
-    return (
-        <h1 className={[styles.h1, className].join(' ')} {...props}>{children}</h1>
-    )
-}
-
-export const Heading4 = ({children, className, ...props}) => {
-    return (
-        <h1 className={[styles.h1, className].join(' ')} {...props}>{children}</h1>
-    )
-}
-
-export const Heading5 = ({children, className, ...props}) => {
-    return (
-        <h1 className={[styles.h1, className].join(' ')} {...props}>{children}</h1>
-    )
-}
-
-export const Heading6 = ({children, className, ...props}) => {
-    return (
-        <h1 className={[styles.h1, className].join(' ')} {...props}>{children}</h1>
-    )
-}
+export default Heading
