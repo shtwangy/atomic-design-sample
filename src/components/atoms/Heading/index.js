@@ -1,21 +1,40 @@
 import React from "react"
 import styles from './styles.css'
 
-const Heading = (
+export const HeadingPresenter = (
     {
-        children,
-        level = 2,
+        tag: Tag,
         visualLevel,
         className,
         ...props
     }) => {
+    return (
+        <Tag className={[styles.h, styles[`h${visualLevel}`], className].join(' ')} {...props} />
+    )
+}
+
+const HeadingContainer = (
+    {
+        presenter,
+        level = 2,
+        visualLevel,
+        ...props
+    }) => {
     level = Math.max(0, Math.min(6, level)) // 0~6に丸め込む
     visualLevel = (typeof visualLevel !== 'undefined') ? visualLevel : level
-    const Tag = `h${level}`
-    const tagStyle = `${styles.h} ${styles[`h${visualLevel}`]}`
+    const tag = `h${level}`
 
+    return presenter({tag, visualLevel, ...props})
+}
+
+const Heading = (props) => {
     return (
-        <Tag className={[tagStyle, className].join(' ')} {...props}>{children}</Tag>
+        <HeadingContainer
+            presenter={presenterProps => {
+                return (<HeadingPresenter {...presenterProps}/>)
+            }}
+            {...props}
+        />
     )
 }
 
