@@ -1,28 +1,15 @@
 import React from 'react'
 import styles from './styles.css'
 
-export const TrashCanIconPresenter = ({
-    height = 20,
-    width = 20,
-    ...props
-}) => (
-    <img
-        src="/icons/trash-can.svg"
-        alt=""
-        height={height}
-        width={width}
-        {...props}
-    />
-)
-
-export const ChevronRightIconPresenter = (
+export const IconPresenter = (
     {
+        iconName,
         height = 20,
         width = 20,
         ...props
     }) => (
     <img
-        src="/icons/chevron-right.svg"
+        src={`/icons/${iconName}.svg`}
         alt=""
         height={height}
         width={width}
@@ -30,26 +17,25 @@ export const ChevronRightIconPresenter = (
     />
 )
 
-export const IconContainer = ({
-    presenter,
-    onClick,
-    className = '',
-    ...props
-}) => {
+export const IconContainer = (
+    {
+        presenter,
+        onClick,
+        className = '',
+        ...props
+    }) => {
     if (onClick) className += ` ${styles.clickable}`
     return presenter({onClick, className, ...props})
 }
 
-export const TrashCanIcon = props => (
+export const iconFactory = iconName => props => (
     <IconContainer
-        presenter={presenterProps => <TrashCanIconPresenter {...presenterProps} />}
-        {...props}
+        presenter={presenterProps => <IconPresenter {...presenterProps} />}
+        {...{iconName, ...props}}
     />
 )
 
-export const ChevronRightIcon = props => (
-    <IconContainer
-        presenter={presenterProps => <ChevronRightIconPresenter {...presenterProps} />}
-        {...props}
-    />
-)
+export const TrashCanIcon = iconFactory('trash-can')
+export const ChevronRightIcon = iconFactory('chevron-right')
+export const SearchIcon = iconFactory('search')
+export const SettingsIcon = iconFactory('settings')
