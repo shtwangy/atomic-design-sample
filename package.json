@@ -7,7 +7,7 @@
   "repository": {},
   "scripts": {
     "test": "cross-env STORY_SHOTS=1 jest",
-    "storybook": "start-storybook -p 6006 -s ./assets",
+    "start:storybook": "start-storybook -p 6006 -s ./assets",
     "build-storybook": "build-storybook",
     "storybook:visual": "start-storybook -p 9001 -s ./assets",
     "spec:visual": "backstop reference",
