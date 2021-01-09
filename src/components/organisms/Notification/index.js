@@ -1,4 +1,4 @@
-import React from "react"
+import React, {Component} from "react"
 import styles from './styles.css'
 import Img from '../../atoms/Img'
 import Heading from "../../atoms/Heading"
@@ -6,7 +6,27 @@ import {InfoTxt} from "../../atoms/Txt"
 import Time from '../../atoms/Time'
 import DeleteButton from "../../molecules/DeleteButton"
 
-const Notification = ({
+// TODO: Functional Componentで書き換えてみる
+export class NotificationContainer extends Component {
+    constructor() {
+        super();
+        this.onClickDelete = ::this.onClickDelete;
+    }
+
+    render() {
+        const {presenter, onClickDelete:propsOnClickDelete, ...props} = this.props;
+        const onClickDelete = propsOnClickDelete ? this.onClickDelete : null;
+        const presenterProps = {onClickDelete, ...props};
+        return presenter(presenterProps);
+    }
+
+    onClickDelete(...args) {
+        const {onClickDelete, program} = this.props;
+        onClickDelete(...args, program);
+    }
+}
+
+const NotificationPresenter = ({
     program,
     className,
     onClickDelete,
@@ -27,6 +47,13 @@ const Notification = ({
             <DeleteButton onClick={onClickDelete} className={styles.del} />
         </div>
     </section>
+)
+
+const Notification = props => (
+    <NotificationContainer
+        presenter={presenterProps => <NotificationPresenter {...presenterProps} />}
+        {...props}
+    />
 )
 
 export default Notification
