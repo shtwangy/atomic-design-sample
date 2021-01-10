@@ -1,5 +1,6 @@
 import React from "react";
 import Balloon from "./index";
+import {TrashCanIcon} from "../Icon";
 
 export default stories => stories
     .add('2文字ラベル', () => <Balloon>次へ</Balloon>)
@@ -13,3 +14,5 @@ export default stories => stories
             }
         }>左上から200xに配置</Balloon>
     )
+    .add('アイコンラベル', () => <Balloon><TrashCanIcon /></Balloon>)
+    .add('絵文字', () => <Balloon>❌</Balloon>)
