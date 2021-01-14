@@ -4,11 +4,6 @@
     position: relative;
 }
 
-.body {
-    flex: 1;
-    min-width: 0;
-}
-
 .media {
     padding-right: 1rem;
 }
