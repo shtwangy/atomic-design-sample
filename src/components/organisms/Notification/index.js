@@ -6,6 +6,7 @@ import {InfoTxt} from "../../atoms/Txt"
 import Time from '../../atoms/Time'
 import DeleteButton from "../../molecules/DeleteButton"
 import MediaObjectLayout from "../../atoms/MediaObjectLayout";
+import {containPresenter} from "../../utils/HoC";
 
 // TODO: Functional Componentで書き換えてみる
 export class NotificationContainer extends Component {
@@ -46,11 +47,6 @@ const NotificationPresenter = ({
     </MediaObjectLayout>
 )
 
-const Notification = props => (
-    <NotificationContainer
-        presenter={presenterProps => <NotificationPresenter {...presenterProps} />}
-        {...props}
-    />
-)
+const Notification = containPresenter(NotificationContainer, NotificationPresenter)
 
 export default Notification
