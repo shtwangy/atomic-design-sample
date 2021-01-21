@@ -12,6 +12,6 @@ $ yarn
 
 # storybook
 ```
-yarn storybook
+yarn start:storybook
 ```
 
